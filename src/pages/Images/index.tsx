@@ -1,12 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import * as Storage from '../../services/storage';
+import { useNavigate, useParams } from 'react-router-dom'
+import { Image } from '../../interfaces/Image';
 
-const Images = (id: string) => {
+const Images = () => {
+  const [images, setImages] = useState<Image[]>([])
+  const navigate = useNavigate()
+  const params = useParams()
 
-  console.log("Imagens", Storage.getImages(id))
+  useEffect(() => {
+    getImages()
+  }, [])
+
+  const getImages = async () => {
+    setImages(await Storage.getImages(params.id!))
+  }
+
   return (
-    <div>Images</div>
+    <>
+      {
+        images.map(img => (
+          <img src={img.url} key={img.id} />
+        ))
+      }
+    </>
   )
 }
 

@@ -1,12 +1,11 @@
 
-import Home from "./pages/Home"
+import { Router } from "./Routes/routes"
 
 const App = () => {
 
   return (
     <>
-      <h1>MANDU'A</h1>
-      <Home />
+      <Router />
     </>
   )
 }
