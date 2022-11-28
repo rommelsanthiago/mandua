@@ -1,12 +1,12 @@
 
-import Images from "./pages/Images"
+import Home from "./pages/Home"
 
 const App = () => {
 
   return (
     <>
       <h1>MANDU'A</h1>
-      <Images />
+      <Home />
     </>
   )
 }
