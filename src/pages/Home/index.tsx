@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 
 import * as Storage from '../../services/storage';
+import { AlbumCard } from '../../components/AlbumCard';
+import { Album } from '../../interfaces/Album';
 
 const Home = () => {
-  const [albuns, setAlbuns] = useState<any>()
+  const [albuns, setAlbuns] = useState<Album[]>([])
 
   useEffect(()=>{
     getAlbuns();
@@ -13,11 +15,20 @@ const Home = () => {
     setAlbuns(await Storage.getAlbuns())
   }
 
-  console.log("Albuns", Storage.getAlbuns())
-  console.log("Imagens", Storage.getImages(albuns?.map((value: { id: any; }) => value.id)[0]))
-
   return (
-    <div>Home</div>
+    <section>
+      <div>Home</div>
+      {
+        albuns.map((album, index) => (
+            <AlbumCard 
+              key={index}
+              id={album.id} 
+              coverImg={album.coverImg}
+              title={album.title}
+            />
+        ))
+      }
+    </section>
   )
 }
 
